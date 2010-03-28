@@ -1,5 +1,6 @@
 var sys = require('sys'),
-    fs = require('fs');
+    fs  = require('fs');
+
 var counter = 0, fileCounter = 0;
 
 var GetFiles = {
@@ -7,15 +8,12 @@ var GetFiles = {
   traverse:function(file) {
     
     fs.stat(file, function(err, stats) {
-      if (err) sys.debug("File Status: " + err);
+      if(err) sys.debug("File Status: " + err);
       
       if (stats.isDirectory()) {
         fs.readdir(file, function(err, files) {
           if (err) sys.debug("Read dir: " + err);
           
-          files.forEach(function(filename) {
-            GetFiles.traverse(filename);
-          })
         })
       } 
       else if (stats.isFile()) {
@@ -49,9 +47,9 @@ function traverse(file) {
     }
   })
 }
-traverse("/Users/lukas/Downloads");
-sys.puts("Found directories and files: " + counter);
-sys.puts("Found files: " + fileCounter);
+//traverse("/Users/lukas/Downloads");
+//sys.puts("Found directories and files: " + counter);
+//sys.puts("Found files: " + fileCounter);
 
 var listFiles = {
   
